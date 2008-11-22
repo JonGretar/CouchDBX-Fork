@@ -18,7 +18,17 @@
 
 -(void)awakeFromNib
 {
-    [browse setEnabled:NO];
+	
+	menuIcon = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CouchDBXMenuIcon" ofType:@"png"]];	
+	
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:29] retain]; //NSVariableStatusItemLength] retain];
+	[statusItem setHighlightMode:YES];
+	[statusItem setTitle:@""];
+	[statusItem setMenu:toolMenu];
+    [statusItem setImage:menuIcon];
+    [statusItem setAlternateImage:menuIcon];
+	
+	[statusItem setEnabled:YES];
 }
 
 -(IBAction)start:(id)sender
@@ -38,14 +48,12 @@
     [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
     [writer closeFile];
 	
-    [browse setEnabled:NO];
     [start setImage:[NSImage imageNamed:@"start.png"]];
     [start setLabel:@"start"];
 }
 
 -(void)launchCouchDB
 {
-    [browse setEnabled:YES];
     [start setImage:[NSImage imageNamed:@"stop.png"]];
     [start setLabel:@"stop"];
 	
@@ -80,7 +88,7 @@
 	
   	[task launch];
 	
-  	[outputView setString:@"Starting CouchDB...\n"];
+
   	[fh readInBackgroundAndNotify];
 }
 
@@ -102,30 +110,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(IBAction)browse:(id)sender
-{
-    [webView setTextSizeMultiplier:1.3];
-	[[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]]];
-    //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
-}
 
-- (void)appendData:(NSData *)d
-{
-    NSString *s = [[NSString alloc] initWithData: d
-                                        encoding: NSUTF8StringEncoding];
-    NSTextStorage *ts = [outputView textStorage];
-    [ts replaceCharactersInRange:NSMakeRange([ts length], 0) withString:s];
-    [outputView scrollRangeToVisible:NSMakeRange([ts length], 0)];
-    [s release];
-}
 
 - (void)dataReady:(NSNotification *)n
 {
     NSData *d;
     d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
-    if ([d length]) {
-		[self appendData:d];
-    }
+
     if (task)
 		[[out fileHandleForReading] readInBackgroundAndNotify];
 }

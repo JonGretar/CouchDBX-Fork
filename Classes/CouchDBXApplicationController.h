@@ -7,17 +7,19 @@
 #import <WebKit/WebKit.h>
 
 @interface CouchDBXApplicationController : NSObject{
+	NSStatusItem *statusItem;
+	IBOutlet NSMenu *toolMenu;
+	NSImage *menuIcon;
+	
     IBOutlet NSToolbarItem *start;
-    IBOutlet NSToolbarItem *browse;
-	IBOutlet NSTextView *outputView;
-	IBOutlet WebView *webView;
+	
+	
     
     NSTask *task;
     NSPipe *in, *out;
 }
 
 -(IBAction)start:(id)sender;
--(IBAction)browse:(id)sender;
 
 -(void)launchCouchDB;
 -(void)stop;
