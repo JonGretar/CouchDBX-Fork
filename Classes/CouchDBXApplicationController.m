@@ -20,7 +20,14 @@
 	
 	[statusItem setEnabled:YES];
 	
+	[outputView setString:@"CouchDBX Started...\n\n"];
+	
 	[self launchCouchDB];
+}
+
+-(IBAction)showLogPanel:(id)sender
+{
+	[logPanel makeKeyAndOrderFront:self];
 }
 
 -(IBAction)browse:(id)sender
@@ -31,7 +38,6 @@
 -(IBAction)restart:(id)sender
 {
     if([task isRunning]) {
-		NSLog(@"Stopping CouchDB");
 		[self stop];
 		//return;
     }
@@ -43,7 +49,6 @@
 
 -(IBAction)quit:(id)sender
 {
-	NSLog(@"Termination application CouchDBX");
     [self stop];
 	
 	[NSApp terminate:NULL];
@@ -52,6 +57,8 @@
 
 -(void)stop
 {
+	NSLog(@"CouchDB Stopping");
+	
     NSFileHandle *writer;
     writer = [in fileHandleForWriting];
     [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
@@ -61,7 +68,7 @@
 
 -(void)launchCouchDB
 {
-	NSLog(@"Startin CouchDB");
+	NSLog(@"CouchDB Starting");
 	
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
@@ -86,21 +93,25 @@
 			   name:NSTaskDidTerminateNotification
 			 object:task];
 	
+	[nc addObserver:self
+		   selector:@selector(dataReady:)
+			   name:NSFileHandleReadCompletionNotification
+			 object:fh];
+	
   	[task launch];
 	
-
   	[fh readInBackgroundAndNotify];
 }
 
 -(void)taskTerminated:(NSNotification *)note
 {
-	NSLog(@"taskTerminated: notification");
     [self cleanup];
 }
 
 -(void)cleanup
 {
-	NSLog(@"Cleanup of CouchDB");
+	NSLog(@"CouchDB Memory Cleanup");
+	
     [task release];
     task = nil;
     
@@ -112,7 +123,26 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)appendData:(NSData *)d
+{
+    NSString *s = [[NSString alloc] initWithData: d
+                                        encoding: NSUTF8StringEncoding];
+    NSTextStorage *ts = [outputView textStorage];
+    [ts replaceCharactersInRange:NSMakeRange([ts length], 0) withString:s];
+    [outputView scrollRangeToVisible:NSMakeRange([ts length], 0)];
+    [s release];
+}
 
+- (void)dataReady:(NSNotification *)n
+{
+    NSData *d;
+    d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
+    if ([d length]) {
+		[self appendData:d];
+    }
+    if (task)
+		[[out fileHandleForReading] readInBackgroundAndNotify];
+}
 
 
 @end

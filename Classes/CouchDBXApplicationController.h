@@ -15,12 +15,14 @@
 	
 	// Log Window
 	IBOutlet NSPanel *logPanel;
+	IBOutlet NSTextView *outputView;
 	
     // CouchDB
     NSTask *task;
     NSPipe *in, *out;
 }
 
+-(IBAction)showLogPanel:(id)sender;
 -(IBAction)browse:(id)sender;
 -(IBAction)restart:(id)sender;
 -(IBAction)quit:(id)sender;
