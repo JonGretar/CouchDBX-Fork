@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="451"/>
-			<integer value="464"/>
 			<integer value="29"/>
+			<integer value="451"/>
+			<integer value="465"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1161,12 +1161,13 @@
 			<object class="NSWindowTemplate" id="350112118">
 				<int key="NSWindowStyleMask">8219</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{1250, 657}, {354, 333}}</string>
+				<string key="NSWindowRect">{{1250, 665}, {354, 325}}</string>
 				<int key="NSWTFlags">1677721600</int>
 				<string key="NSWindowTitle">CouchDBX Log</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMinSize">{200, 160}</string>
 				<object class="NSView" key="NSWindowView" id="200017341">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -1175,7 +1176,7 @@
 						<object class="BWTransparentButton" id="824554577">
 							<reference key="NSNextResponder" ref="200017341"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{254, 10}, {81, 28}}</string>
+							<string key="NSFrame">{{262, 6}, {81, 28}}</string>
 							<reference key="NSSuperview" ref="200017341"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentButtonCell" key="NSCell" id="484951658">
@@ -1234,7 +1235,7 @@
 										<object class="NSTextView" id="194941863">
 											<reference key="NSNextResponder" ref="3691210"/>
 											<int key="NSvFlags">2322</int>
-											<string key="NSFrameSize">{312, 195}</string>
+											<string key="NSFrameSize">{343, 104}</string>
 											<reference key="NSSuperview" ref="3691210"/>
 											<object class="NSTextContainer" key="NSTextContainer" id="19048304">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1437,7 +1438,7 @@
 													<nil key="NSDelegate"/>
 												</object>
 												<reference key="NSTextView" ref="194941863"/>
-												<double key="NSWidth">3.120000e+02</double>
+												<double key="NSWidth">3.430000e+02</double>
 												<int key="NSTCFlags">1</int>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
@@ -1498,7 +1499,7 @@
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
-									<string key="NSFrameSize">{312, 267}</string>
+									<string key="NSFrameSize">{343, 276}</string>
 									<reference key="NSSuperview" ref="221579714"/>
 									<reference key="NSNextKeyView" ref="194941863"/>
 									<reference key="NSDocView" ref="194941863"/>
@@ -1531,7 +1532,7 @@
 									<double key="NSPercent">9.456522e-01</double>
 								</object>
 							</object>
-							<string key="NSFrame">{{21, 46}, {312, 267}}</string>
+							<string key="NSFrame">{{5, 42}, {343, 276}}</string>
 							<reference key="NSSuperview" ref="200017341"/>
 							<reference key="NSNextKeyView" ref="3691210"/>
 							<int key="NSsFlags">528</int>
@@ -1540,10 +1541,11 @@
 							<reference key="NSContentView" ref="3691210"/>
 						</object>
 					</object>
-					<string key="NSFrameSize">{354, 333}</string>
+					<string key="NSFrameSize">{354, 325}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSMinSize">{200, 179}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 		</object>
@@ -3322,6 +3324,8 @@
 					<string>464.IBPluginDependency</string>
 					<string>464.IBWindowTemplateEditedContentRect</string>
 					<string>464.NSWindowTemplate.visibleAtLaunch</string>
+					<string>464.windowTemplate.hasMinSize</string>
+					<string>464.windowTemplate.minSize</string>
 					<string>465.IBPluginDependency</string>
 					<string>470.IBPluginDependency</string>
 					<string>471.IBPluginDependency</string>
@@ -3554,10 +3558,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{345, 652}, {354, 333}}</string>
+					<string>{{345, 660}, {354, 325}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{345, 652}, {354, 333}}</string>
+					<string>{{345, 660}, {354, 325}}</string>
 					<integer value="0"/>
+					<integer value="1"/>
+					<string>{200, 160}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
