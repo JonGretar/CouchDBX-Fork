@@ -10,6 +10,7 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		3323684E0ED9D47C00180B46 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3323684D0ED9D47C00180B46 /* BWToolkitFramework.framework */; };
 		332368580ED9D4A900180B46 /* BWToolkitFramework.framework in Copy Framework */ = {isa = PBXBuildFile; fileRef = 3323684D0ED9D47C00180B46 /* BWToolkitFramework.framework */; };
+		332368E60ED9F73C00180B46 /* CouchPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 332368E50ED9F73C00180B46 /* CouchPreferences.m */; };
 		332570AA0ED8C4E0002518BF /* CouchDb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 332570A90ED8C4E0002518BF /* CouchDb.icns */; };
 		332570AF0ED8C51D002518BF /* CouchDBXApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332570AE0ED8C51D002518BF /* CouchDBXApplicationController.m */; };
 		332571B40ED8C699002518BF /* CouchDB in Resources */ = {isa = PBXBuildFile; fileRef = 332571B10ED8C699002518BF /* CouchDB */; };
@@ -43,6 +44,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* CouchDBX_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBX_Prefix.pch; sourceTree = "<group>"; };
 		3323684D0ED9D47C00180B46 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../Libraries/BWToolkit/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
+		332368E40ED9F73C00180B46 /* CouchPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchPreferences.h; sourceTree = "<group>"; };
+		332368E50ED9F73C00180B46 /* CouchPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchPreferences.m; sourceTree = "<group>"; };
 		332570A90ED8C4E0002518BF /* CouchDb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CouchDb.icns; sourceTree = "<group>"; };
 		332570AD0ED8C51D002518BF /* CouchDBXApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchDBXApplicationController.h; sourceTree = "<group>"; };
 		332570AE0ED8C51D002518BF /* CouchDBXApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchDBXApplicationController.m; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 			children = (
 				332570AD0ED8C51D002518BF /* CouchDBXApplicationController.h */,
 				332570AE0ED8C51D002518BF /* CouchDBXApplicationController.m */,
+				332368E40ED9F73C00180B46 /* CouchPreferences.h */,
+				332368E50ED9F73C00180B46 /* CouchPreferences.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				332570AF0ED8C51D002518BF /* CouchDBXApplicationController.m in Sources */,
+				332368E60ED9F73C00180B46 /* CouchPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

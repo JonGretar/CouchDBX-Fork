@@ -5,6 +5,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+#import "CouchPreferences.h"
 
 @interface CouchDBXApplicationController : NSObject{
 	
@@ -20,6 +21,10 @@
     // CouchDB
     NSTask *task;
     NSPipe *in, *out;
+	
+	//Extra
+	NSMutableDictionary *environment;
+	CouchPreferences *preferences; 
 }
 
 -(IBAction)showLogPanel:(id)sender;

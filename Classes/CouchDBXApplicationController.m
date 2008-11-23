@@ -4,10 +4,15 @@
  */
 #import "CouchDBXApplicationController.h"
 
+
 @implementation CouchDBXApplicationController
 
 -(void)awakeFromNib
 {
+	
+	preferences = [[CouchPreferences alloc] init];
+	[preferences writeINIFile];
+	
 	
 	menuIcon = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CouchDBXMenuIcon" ofType:@"png"]];	
 	
@@ -73,6 +78,16 @@
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
 	task = [[NSTask alloc] init];
+	
+	environment = [[NSMutableDictionary alloc] init];
+	[environment setObject:@"Hello World" 
+					forKey:@"TESTENV"];
+	[environment setObject:NSHomeDirectory() 
+					forKey:@"HOME"];
+	[environment setObject:[@"~/Library/Preferences/com.jongretar.couchdbx.ini" stringByExpandingTildeInPath] 
+					forKey:@"INI_FILE"];
+	
+	[task setEnvironment:environment];
 	
 	NSMutableString *launchPath = [[NSMutableString alloc] init];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
