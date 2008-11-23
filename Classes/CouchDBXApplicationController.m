@@ -6,22 +6,12 @@
 
 @implementation CouchDBXApplicationController
 
--(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSNotification *)notification
-{
-	return YES;
-}
-
-- (void)windowWillClose:(NSNotification *)aNotification 
-{
-    [self stop];
-}
-
 -(void)awakeFromNib
 {
 	
 	menuIcon = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CouchDBXMenuIcon" ofType:@"png"]];	
 	
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:29] retain]; //NSVariableStatusItemLength] retain];
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:29] retain];
 	[statusItem setHighlightMode:YES];
 	[statusItem setTitle:@""];
 	[statusItem setMenu:toolMenu];
@@ -29,17 +19,36 @@
     [statusItem setAlternateImage:menuIcon];
 	
 	[statusItem setEnabled:YES];
+	
+	[self launchCouchDB];
 }
 
--(IBAction)start:(id)sender
+-(IBAction)browse:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
+}
+
+-(IBAction)restart:(id)sender
 {
     if([task isRunning]) {
+		NSLog(@"Stopping CouchDB");
 		[self stop];
-		return;
-    } 
+		//return;
+    }
     
-    [self launchCouchDB];
+	// Couch is restarted too soon so lets time the restart to 2 seconds
+	[self performSelector:@selector(launchCouchDB) withObject:nil afterDelay:2.0];
+	//[self launchCouchDB];
 }
+
+-(IBAction)quit:(id)sender
+{
+	NSLog(@"Termination application CouchDBX");
+    [self stop];
+	
+	[NSApp terminate:NULL];
+}
+
 
 -(void)stop
 {
@@ -47,16 +56,12 @@
     writer = [in fileHandleForWriting];
     [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
     [writer closeFile];
-	
-    [start setImage:[NSImage imageNamed:@"start.png"]];
-    [start setLabel:@"start"];
 }
+
 
 -(void)launchCouchDB
 {
-    [start setImage:[NSImage imageNamed:@"stop.png"]];
-    [start setLabel:@"stop"];
-	
+	NSLog(@"Startin CouchDB");
 	
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
@@ -77,11 +82,6 @@
 	nc = [NSNotificationCenter defaultCenter];
 	
 	[nc addObserver:self
-		   selector:@selector(dataReady:)
-			   name:NSFileHandleReadCompletionNotification
-			 object:fh];
-	
-	[nc addObserver:self
 		   selector:@selector(taskTerminated:)
 			   name:NSTaskDidTerminateNotification
 			 object:task];
@@ -94,11 +94,13 @@
 
 -(void)taskTerminated:(NSNotification *)note
 {
+	NSLog(@"taskTerminated: notification");
     [self cleanup];
 }
 
 -(void)cleanup
 {
+	NSLog(@"Cleanup of CouchDB");
     [task release];
     task = nil;
     
@@ -112,13 +114,5 @@
 
 
 
-- (void)dataReady:(NSNotification *)n
-{
-    NSData *d;
-    d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
-
-    if (task)
-		[[out fileHandleForReading] readInBackgroundAndNotify];
-}
 
 @end
