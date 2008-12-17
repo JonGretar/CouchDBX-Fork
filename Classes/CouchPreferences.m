@@ -36,13 +36,13 @@
 	
 	
 	[contents appendString:@"[Couch]"];
-	[contents appendString:@"\nConsoleStartupMsg=Apache CouchDB is starting."];
+	[contents appendString:@"\nConsoleStartupMsg=Apache CouchDB is starting using CouchDBX."];
 	
 	[contents appendString:@"\nDbRootDir="];
 	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
 	
 	[contents appendString:@"\nPort="];
-	[contents appendString:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Port"] stringValue] ];
+	[contents appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"Port"] ];
 	
 	[contents appendString:@"\nBindAddress="];
 	if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"IsNetworked"] == [NSNumber numberWithBool:YES] ) {
@@ -52,8 +52,6 @@
 	{
 		[contents appendString:@"127.0.0.1"];
 	}
-	
-	
 	
 	[contents appendString:@"\nDocumentRoot=.//share/couchdb/www"];
 	[contents appendString:@"\nLogFile=.//var/log/couchdb/couch.log"];
@@ -73,8 +71,16 @@
 
 - (IBAction) saveAndClose: (id)sender
 {
-	[defaultsController save:NULL];
-	[preferenceWindow orderOut:NULL];
+	// FIXME: Add More Validations Later
+	if ([port intValue]) {
+		[defaultsController save:NULL];
+		[preferenceWindow orderOut:NULL];
+	}
+	else
+	{
+		[port setStringValue:@"5984"];
+	}
+	
 }
 
 - (IBAction) abortAndClose: (id)sender

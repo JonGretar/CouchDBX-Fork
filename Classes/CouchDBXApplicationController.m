@@ -11,7 +11,7 @@
 {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"IsNetworked"];
-	[defaultValues setObject:[NSNumber numberWithInt:5984] forKey:@"Port"];
+	[defaultValues setObject:@"5984" forKey:@"Port"];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 	NSLog(@"Registered Defaults: %@", defaultValues);
