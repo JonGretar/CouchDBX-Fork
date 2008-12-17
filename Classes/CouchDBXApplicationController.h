@@ -23,6 +23,7 @@
     NSPipe *in, *out;
 	
 	//Extra
+	NSUserDefaultsController *defaults;
 	NSMutableDictionary *environment;
 	CouchPreferences *preferences; 
 }

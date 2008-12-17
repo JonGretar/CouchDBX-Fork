@@ -34,14 +34,27 @@
 	NSMutableString *contents = [[NSMutableString alloc] init];
 	NSError *error;
 	
+	
 	[contents appendString:@"[Couch]"];
 	[contents appendString:@"\nConsoleStartupMsg=Apache CouchDB is starting."];
 	
 	[contents appendString:@"\nDbRootDir="];
 	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
 	
-	[contents appendString:@"\nPort=5984"];
-	[contents appendString:@"\nBindAddress=127.0.0.1"];
+	[contents appendString:@"\nPort="];
+	[contents appendString:[[[NSUserDefaults standardUserDefaults] objectForKey:@"Port"] stringValue] ];
+	
+	[contents appendString:@"\nBindAddress="];
+	if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"IsNetworked"] == [NSNumber numberWithBool:YES] ) {
+		[contents appendString:@"0.0.0.0"];
+	}
+	else 
+	{
+		[contents appendString:@"127.0.0.1"];
+	}
+	
+	
+	
 	[contents appendString:@"\nDocumentRoot=.//share/couchdb/www"];
 	[contents appendString:@"\nLogFile=.//var/log/couchdb/couch.log"];
 	[contents appendString:@"\nUtilDriverDir=.//lib/couchdb/erlang/lib/couch-0.8.0-incubating/priv/lib"];
@@ -55,6 +68,19 @@
 	[contents writeToFile:path atomically:YES
 			 encoding:NSASCIIStringEncoding error:&error];
 
+}
+
+
+- (IBAction) saveAndClose: (id)sender
+{
+	[defaultsController save:NULL];
+	[preferenceWindow orderOut:NULL];
+}
+
+- (IBAction) abortAndClose: (id)sender
+{
+	[defaultsController revert:NULL];
+	[preferenceWindow orderOut:NULL];
 }
 
 @end

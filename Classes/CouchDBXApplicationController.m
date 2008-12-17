@@ -7,12 +7,21 @@
 
 @implementation CouchDBXApplicationController
 
++ (void)initialize
+{
+	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"IsNetworked"];
+	[defaultValues setObject:[NSNumber numberWithInt:5984] forKey:@"Port"];
+	
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+	NSLog(@"Registered Defaults: %@", defaultValues);
+}
+
 -(void)awakeFromNib
 {
 	
 	preferences = [[CouchPreferences alloc] init];
 	[preferences writeINIFile];
-	
 	
 	menuIcon = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CouchDBXMenuIcon" ofType:@"png"]];	
 	
@@ -46,7 +55,7 @@
 		[self stop];
 		//return;
     }
-    
+    [preferences writeINIFile];
 	// Couch is restarted too soon so lets time the restart to 2 seconds
 	[self performSelector:@selector(launchCouchDB) withObject:nil afterDelay:2.0];
 	//[self launchCouchDB];
