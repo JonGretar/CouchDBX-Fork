@@ -46,7 +46,9 @@
 
 -(IBAction)browse:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
+	NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:%@/_utils/", 
+						   [[NSUserDefaults standardUserDefaults] objectForKey:@"Port"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 -(IBAction)restart:(id)sender
