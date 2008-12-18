@@ -1,1 +1,14 @@
-My GitHub Page
+---
+layout: default
+title: CouchDBX
+---
+
+CouchDBX is a nice little Mac OS X tool to run CouchDB without the need to set up Erlang or anything.
+<center><img src="images/couchDBX-screenshot.png" width="452" height="206" alt="CouchDBX Screenshot"></center>
+<hr />
+
+<ul class="posts">
+{% for post in site.posts %}
+  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
