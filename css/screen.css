@@ -10,7 +10,7 @@ body {
 #wrapper-header {	background: #222; }
 
 #header {
-	background: #222 url('../images/banner.jpg') right no-repeat;
+	background: #222 url('/couchdbx/images/banner.jpg') right no-repeat;
 	width: 75%;
 	height: 125px;
 	line-height: 125px;
@@ -30,7 +30,7 @@ body {
 }
 
 #wrapper-menu {
-	background: #88ac0b url('../images/menu-background.png') top left repeat-x;
+	background: #88ac0b url('/couchdbx/images/menu-background.png') top left repeat-x;
 	float: left;
 	width: 100%;
 }
@@ -67,7 +67,7 @@ body {
 }
 
 #menu a:hover {
-	background: #b6e41c url('../images/menu-hover.png') repeat-x;
+	background: #b6e41c url('/couchdbx/images/menu-hover.png') repeat-x;
 	color: #485b06;
 }
 
@@ -91,7 +91,7 @@ body {
 	text-align: right;
 	color: white;
 	letter-spacing: 0.15em;
-	background: #88ac0b url('../images/menu-background.png') top left repeat-x;
+	background: #88ac0b url('/couchdbx/images/menu-background.png') top left repeat-x;
 	border: 1px solid #a0c80e;
 	font-size: 80%;
 }
