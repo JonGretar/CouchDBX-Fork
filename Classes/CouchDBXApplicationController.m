@@ -98,7 +98,7 @@
 	[environment setObject:@"/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin" 
 					forKey:@"PATH"];
 	[environment setObject:[@"~/Library/Preferences/com.jongretar.couchdbx.ini" stringByExpandingTildeInPath] 
-					forKey:@"INI_FILE"];
+					forKey:@"LOCAL_INI_FILE"];
 	
 	[task setEnvironment:environment];
 	

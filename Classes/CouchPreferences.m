@@ -34,17 +34,19 @@
 	NSMutableString *contents = [[NSMutableString alloc] init];
 	NSError *error;
 	
+	// CouchDB
+	[contents appendString:@"[couchdb]"];
 	
-	[contents appendString:@"[Couch]"];
-	[contents appendString:@"\nConsoleStartupMsg=Apache CouchDB is starting using CouchDBX."];
-	
-	[contents appendString:@"\nDbRootDir="];
+	[contents appendString:@"\ndatabase_dir="];
 	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
 	
-	[contents appendString:@"\nPort="];
+	// httpd
+	[contents appendString:@"\n\n[httpd]"];
+	
+	[contents appendString:@"\nport="];
 	[contents appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"Port"] ];
 	
-	[contents appendString:@"\nBindAddress="];
+	[contents appendString:@"\nbind_address="];
 	if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"IsNetworked"] == [NSNumber numberWithBool:YES] ) {
 		[contents appendString:@"0.0.0.0"];
 	}
@@ -53,16 +55,13 @@
 		[contents appendString:@"127.0.0.1"];
 	}
 	
-	[contents appendString:@"\nDocumentRoot=.//share/couchdb/www"];
-	[contents appendString:@"\nLogFile=.//var/log/couchdb/couch.log"];
-	[contents appendString:@"\nUtilDriverDir=.//lib/couchdb/erlang/lib/couch-0.8.0-incubating/priv/lib"];
-	[contents appendString:@"\nLogLevel=info"];
-	
-	[contents appendString:@"\n\n[Couch Query Servers]"];
-	[contents appendString:@"\njavascript=.//bin/couchjs .//share/couchdb/server/main.js"];
+	// log
+	[contents appendString:@"\n\n[log]"];
+	[contents appendString:@"\nlevel="];
+	[contents appendString:@"info"];
 
 	
-	
+	// Write File
 	[contents writeToFile:path atomically:YES
 			 encoding:NSASCIIStringEncoding error:&error];
 
