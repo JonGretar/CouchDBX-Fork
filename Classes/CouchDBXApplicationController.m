@@ -14,7 +14,6 @@
 	[defaultValues setObject:@"5984" forKey:@"Port"];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-	NSLog(@"Registered Defaults: %@", defaultValues);
 }
 
 -(void)awakeFromNib
@@ -91,8 +90,6 @@
 	task = [[NSTask alloc] init];
 	
 	environment = [[NSMutableDictionary alloc] init];
-	[environment setObject:@"Hello World" 
-					forKey:@"TESTENV"];
 	[environment setObject:NSHomeDirectory() 
 					forKey:@"HOME"];
 	[environment setObject:@"/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin" 
@@ -138,7 +135,6 @@
 
 -(void)cleanup
 {
-	NSLog(@"CouchDB Memory Cleanup");
 	
     [task release];
     task = nil;
