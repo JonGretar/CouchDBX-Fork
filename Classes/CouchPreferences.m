@@ -45,9 +45,14 @@
 	
 	// log
 	[contents appendString:@"\n\n[log]"];
+	
+	[contents appendString:@"\nfile="];
+	[contents appendString:[@"~/Library/Logs/CouchDBX.log" stringByExpandingTildeInPath]];
+	
 	[contents appendString:@"\nlevel="];
 	[contents appendString:@"info"];
-
+	
+	
 	
 	// Write File
 	[contents writeToFile:path atomically:YES
