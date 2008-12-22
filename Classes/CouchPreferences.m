@@ -3,20 +3,8 @@
 //  CouchDBX
 //
 //  Created by Jón Grétar Borgþórsson on 23.11.2008.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-// [Couch]
-// ConsoleStartupMsg=Apache CouchDB is starting.
-// DbRootDir=.//var/lib/couchdb
-// Port=5984
-// BindAddress=127.0.0.1
-// DocumentRoot=.//share/couchdb/www
-// LogFile=.//var/log/couchdb/couch.log
-// UtilDriverDir=.//lib/couchdb/erlang/lib/couch-0.8.0-incubating/priv/lib
-// LogLevel=info
-// [Couch Query Servers]
-// javascript=.//bin/couchjs .//share/couchdb/server/main.js
 
 
 
