@@ -2,7 +2,7 @@ CouchDBX is a nice little Mac OS X tool to run CouchDB without the need to set u
 
 ![Screenshot](http://dl-client.getdropbox.com/u/65508/couchDBX-screenshot.png "Screenshot")
 
-* [Download Current Version](http://dl-client.getdropbox.com/u/65508/CouchDBX.zip)
+* [Download CouchDBX](http://wiki.github.com/JonGretar/couchdbx/home)
 
 Links to the original: 
 
