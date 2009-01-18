@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>CouchDb.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.prima.jan.CouchDBX</string>
+	<string>org.couchdb.CouchDBX</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.9.0a735520X</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

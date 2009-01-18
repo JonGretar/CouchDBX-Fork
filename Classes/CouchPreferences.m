@@ -18,7 +18,7 @@
 - (void)writeINIFile
 {
 
-	NSString *path = [@"~/Library/Preferences/com.jongretar.couchdbx.ini" stringByExpandingTildeInPath];
+	NSString *path = [@"~/Library/Preferences/org.couchdb.CouchDBX.ini" stringByExpandingTildeInPath];
 	NSMutableString *contents = [[NSMutableString alloc] init];
 	NSError *error;
 	
