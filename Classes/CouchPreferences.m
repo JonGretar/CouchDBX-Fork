@@ -28,6 +28,9 @@
 	[contents appendString:@"\ndatabase_dir="];
 	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
 	
+	[contents appendString:@"\nview_index_dir="];
+	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
+	
 	// httpd
 	[contents appendString:@"\n\n[httpd]"];
 	
