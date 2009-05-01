@@ -101,7 +101,7 @@
 	
 	NSMutableString *launchPath = [[NSMutableString alloc] init];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
-	[launchPath appendString:@"/CouchDb"];
+	[launchPath appendString:@"/CouchDB"];
 	[task setCurrentDirectoryPath:launchPath];
 	
 	[launchPath appendString:@"/startCouchDb.sh"];
