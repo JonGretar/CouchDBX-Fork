@@ -24,7 +24,8 @@
 	
 	// CouchDB
 	[contents appendString:@"[couchdb]"];
-	
+	[contents appendString:@"\nos_process_timeout=60000"];
+  
 	[contents appendString:@"\ndatabase_dir="];
 	[contents appendString:[@"~/Documents/CouchDB" stringByExpandingTildeInPath]];
 	
@@ -54,6 +55,14 @@
 	
 	[contents appendString:@"\nlevel="];
 	[contents appendString:@"info"];
+  
+  // lucene
+  [contents appendString:@"\n[external]"];
+  [contents appendString:@"\nfti=/usr/bin/java -server -jar couchdb-lucene-0.4-jar-with-dependencies.jar -search"];
+  [contents appendString:@"\n[update_notification]"];
+  [contents appendString:@"\nindexer=/usr/bin/java -server -jar couchdb-lucene-0.4-jar-with-dependencies.jar -index"];
+  [contents appendString:@"\n[httpd_db_handlers]"];
+  [contents appendString:@"\n_fti = {couch_httpd_external, handle_external_req, <<\"fti\">>}"];
 	
 	
 	

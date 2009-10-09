@@ -4,4 +4,4 @@
 *.tm_build_errors
 .DS_Store
 build/*
-Resources/CouchDB/*
+Resources/couchdbx-core*

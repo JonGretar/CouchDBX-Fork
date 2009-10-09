@@ -34,8 +34,11 @@
 	[statusItem setEnabled:YES];
 	
 	[outputView setString:@"CouchDBX Started...\n\n"];
-	
-	[self launchCouchDB];
+  
+  
+	[[CouchDB server] start];
+  [[CouchDB server] setDelegate:self];
+  
 }
 
 -(IBAction)showLogPanel:(id)sender
@@ -52,100 +55,20 @@
 
 -(IBAction)restart:(id)sender
 {
-    if([task isRunning]) {
-		[self stop];
-		//return;
-    }
+    [[CouchDB server] stop];
     [preferences writeINIFile];
 	// Couch is restarted too soon so lets time the restart to 2 seconds
-	[self performSelector:@selector(launchCouchDB) withObject:nil afterDelay:2.0];
+	[self performSelector:@selector(start) withObject:[CouchDB server] afterDelay:2.0];
 	//[self launchCouchDB];
 }
 
 -(IBAction)quit:(id)sender
 {
-    [self stop];
+    [[CouchDB server] stop];
 	
 	[NSApp terminate:NULL];
 }
 
-
--(void)stop
-{
-	NSLog(@"CouchDB Stopping");
-	
-    NSFileHandle *writer;
-    writer = [in fileHandleForWriting];
-    [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
-    [writer closeFile];
-}
-
-
--(void)launchCouchDB
-{
-	NSLog(@"CouchDB Starting");
-	
-	in = [[NSPipe alloc] init];
-	out = [[NSPipe alloc] init];
-	task = [[NSTask alloc] init];
-	
-	environment = [[NSMutableDictionary alloc] init];
-	[environment setObject:NSHomeDirectory() 
-					forKey:@"HOME"];
-	[environment setObject:@"/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin" 
-					forKey:@"PATH"];
-	[environment setObject:[@"~/Library/Preferences/org.couchdb.CouchDBX.ini" stringByExpandingTildeInPath] 
-					forKey:@"LOCAL_INI_FILE"];
-	
-	[task setEnvironment:environment];
-	
-	NSMutableString *launchPath = [[NSMutableString alloc] init];
-	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
-	[launchPath appendString:@"/CouchDB"];
-	[task setCurrentDirectoryPath:launchPath];
-	
-	[launchPath appendString:@"/startCouchDb.sh"];
-	[task setLaunchPath:launchPath];
-	[task setStandardInput:in];
-	[task setStandardOutput:out];
-	
-	NSFileHandle *fh = [out fileHandleForReading];
-	NSNotificationCenter *nc;
-	nc = [NSNotificationCenter defaultCenter];
-	
-	[nc addObserver:self
-		   selector:@selector(taskTerminated:)
-			   name:NSTaskDidTerminateNotification
-			 object:task];
-	
-	[nc addObserver:self
-		   selector:@selector(dataReady:)
-			   name:NSFileHandleReadCompletionNotification
-			 object:fh];
-	
-  	[task launch];
-	
-  	[fh readInBackgroundAndNotify];
-}
-
--(void)taskTerminated:(NSNotification *)note
-{
-    [self cleanup];
-}
-
--(void)cleanup
-{
-	
-    [task release];
-    task = nil;
-    
-    [in release];
-    in = nil;
-	[out release];
-	out = nil;
-	
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 - (void)appendData:(NSData *)d
 {
@@ -157,16 +80,6 @@
     [s release];
 }
 
-- (void)dataReady:(NSNotification *)n
-{
-    NSData *d;
-    d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
-    if ([d length]) {
-		[self appendData:d];
-    }
-    if (task)
-		[[out fileHandleForReading] readInBackgroundAndNotify];
-}
 
 
 @end

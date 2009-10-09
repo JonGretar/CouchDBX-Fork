@@ -6,6 +6,7 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import "CouchPreferences.h"
+#import "CouchDB.h"
 
 @interface CouchDBXApplicationController : NSObject{
 	
@@ -17,14 +18,11 @@
 	// Log Window
 	IBOutlet NSPanel *logPanel;
 	IBOutlet NSTextView *outputView;
-	
-    // CouchDB
-    NSTask *task;
-    NSPipe *in, *out;
+  IBOutlet WebView *webView;
 	
 	//Extra
 	NSUserDefaultsController *defaults;
-	NSMutableDictionary *environment;
+	
 	CouchPreferences *preferences; 
 }
 
@@ -32,11 +30,5 @@
 -(IBAction)browse:(id)sender;
 -(IBAction)restart:(id)sender;
 -(IBAction)quit:(id)sender;
-
--(void)stop;
--(void)launchCouchDB;
-
--(void)taskTerminated:(NSNotification *)note;
--(void)cleanup;
 
 @end
