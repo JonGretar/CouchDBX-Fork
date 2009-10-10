@@ -18,6 +18,7 @@
 		33F6DFD8107FBE2F00B13743 /* CouchDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F6DFD7107FBE2F00B13743 /* CouchDB.m */; };
 		33F6DFDB107FBE3E00B13743 /* Lucene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F6DFDA107FBE3E00B13743 /* Lucene.m */; };
 		33F6E7B5107FF06E00B13743 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F6E7B4107FF06E00B13743 /* WebKit.framework */; };
+		33F6E8871080190B00B13743 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F6E8861080190B00B13743 /* SystemConfiguration.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -59,6 +60,7 @@
 		33F6DFD9107FBE3E00B13743 /* Lucene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lucene.h; sourceTree = "<group>"; };
 		33F6DFDA107FBE3E00B13743 /* Lucene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lucene.m; sourceTree = "<group>"; };
 		33F6E7B4107FF06E00B13743 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		33F6E8861080190B00B13743 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CouchDBX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchDBX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				3323684E0ED9D47C00180B46 /* BWToolkitFramework.framework in Frameworks */,
 				33F6E7B5107FF06E00B13743 /* WebKit.framework in Frameworks */,
+				33F6E8871080190B00B13743 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				33F6E7B4107FF06E00B13743 /* WebKit.framework */,
+				33F6E8861080190B00B13743 /* SystemConfiguration.framework */,
 			);
 			name = CouchDBX;
 			sourceTree = "<group>";

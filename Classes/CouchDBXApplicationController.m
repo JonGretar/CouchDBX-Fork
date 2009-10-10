@@ -15,6 +15,7 @@
 {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"IsNetworked"];
+  [defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"LSUIElement"];
 	[defaultValues setObject:@"5984" forKey:@"Port"];
   [defaultValues setObject:@"127.0.0.1" forKey:@"BindAddress"];
 	
@@ -23,7 +24,16 @@
 
 -(void)awakeFromNib
 {
+ 
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"LSUIElement"] == [NSNumber numberWithBool:YES]) {
+    ProcessSerialNumber psn = { 0, kCurrentProcess };
+    OSStatus returnCode = TransformProcessType(& psn, kProcessTransformToForegroundApplication);
+    if( returnCode != 0) {
+      NSLog(@"Could not bring the application to front. Error %d", returnCode);
+    }
+  }
 	
+  
 	preferences = [[CouchPreferences alloc] init];
 	[preferences writeINIFile];
 	
