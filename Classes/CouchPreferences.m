@@ -48,7 +48,7 @@
 	[contents appendString:[@"~/Library/Logs/CouchDBX.log" stringByExpandingTildeInPath]];
 	
 	[contents appendString:@"\nlevel="];
-	[contents appendString:@"info"];
+	[contents appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LogLevel"] ];
   
   // lucene
   [contents appendString:@"\n[external]"];
@@ -66,25 +66,5 @@
 
 }
 
-
-- (IBAction) saveAndClose: (id)sender
-{
-	// FIXME: Add More Validations Later
-	if ([port intValue]) {
-		[defaultsController save:NULL];
-		[preferenceWindow orderOut:NULL];
-	}
-	else
-	{
-		[port setStringValue:@"5984"];
-	}
-	
-}
-
-- (IBAction) abortAndClose: (id)sender
-{
-	[defaultsController revert:NULL];
-	[preferenceWindow orderOut:NULL];
-}
 
 @end
