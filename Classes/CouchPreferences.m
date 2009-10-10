@@ -39,13 +39,7 @@
 	[contents appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"Port"] ];
 	
 	[contents appendString:@"\nbind_address="];
-	if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"IsNetworked"] == [NSNumber numberWithBool:YES] ) {
-		[contents appendString:@"0.0.0.0"];
-	}
-	else 
-	{
-		[contents appendString:@"127.0.0.1"];
-	}
+	[contents appendString:[[NSUserDefaults standardUserDefaults] objectForKey:@"BindAddress"] ];
 	
 	// log
 	[contents appendString:@"\n\n[log]"];

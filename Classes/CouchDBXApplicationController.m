@@ -1,7 +1,11 @@
-/*
- *  Author: Jan Lehnardt <jan@apache.org>
- *  This is Apache 2.0 licensed free software
- */
+//
+//  CouchDBX
+//
+//  Author: Jan Lehnardt <jan@apache.org>
+//  Updated by Jón Grétar Borgþórsson on 9.10.2009.
+//  This is Apache 2.0 licensed free software
+//
+
 #import "CouchDBXApplicationController.h"
 
 
@@ -12,6 +16,7 @@
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"IsNetworked"];
 	[defaultValues setObject:@"5984" forKey:@"Port"];
+  [defaultValues setObject:@"127.0.0.1" forKey:@"BindAddress"];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
@@ -27,30 +32,33 @@
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:29] retain];
 	[statusItem setHighlightMode:YES];
 	[statusItem setTitle:@""];
-	[statusItem setMenu:toolMenu];
-    [statusItem setImage:menuIcon];
-    [statusItem setAlternateImage:menuIcon];
+	//[statusItem setMenu:toolMenu];
+  [statusItem setImage:menuIcon];
+  [statusItem setAlternateImage:menuIcon];
+  [statusItem setTarget:self];
+  [statusItem setAction:@selector(showMainWindow:)];
 	
 	[statusItem setEnabled:YES];
 	
 	[outputView setString:@"CouchDBX Started...\n\n"];
   
-  
 	[[CouchDB server] start];
   [[CouchDB server] setDelegate:self];
-  
+  [self performSelector:@selector(browse:) withObject:self afterDelay:2.0];
 }
 
--(IBAction)showLogPanel:(id)sender
+-(IBAction)showMainWindow:(id)sender
 {
-	[logPanel makeKeyAndOrderFront:self];
+  [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+	[mainWindow makeKeyAndOrderFront:self];
 }
+
 
 -(IBAction)browse:(id)sender
 {
 	NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:%@/_utils/", 
 						   [[NSUserDefaults standardUserDefaults] objectForKey:@"Port"]];
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+	[[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 }
 
 -(IBAction)restart:(id)sender
@@ -80,6 +88,10 @@
     [s release];
 }
 
+- (void) applicationWillTerminate: (NSNotification *)note
+{
+  [self quit:nil];
+}
 
 
 @end

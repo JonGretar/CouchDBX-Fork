@@ -1,10 +1,14 @@
-/*
- Author: Jan Lehnardt <jan@apache.org>
- This is Apache 2.0 licensed free software
- */
+//
+//  CouchDBX
+//
+//  Author: Jan Lehnardt <jan@apache.org>
+//  Updated by Jón Grétar Borgþórsson on 9.10.2009.
+//  This is Apache 2.0 licensed free software
+//
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+#import <BWToolkitFramework/BWToolkitFramework.h>
 #import "CouchPreferences.h"
 #import "CouchDB.h"
 
@@ -12,13 +16,13 @@
 	
 	// Status Bar Menu
 	NSStatusItem *statusItem;
-	IBOutlet NSMenu *toolMenu;
 	NSImage *menuIcon;
 	
-	// Log Window
-	IBOutlet NSPanel *logPanel;
+	// Main Window Window
+	IBOutlet NSWindow *mainWindow;
 	IBOutlet NSTextView *outputView;
   IBOutlet WebView *webView;
+  IBOutlet BWSplitView *splitView;
 	
 	//Extra
 	NSUserDefaultsController *defaults;
@@ -26,9 +30,10 @@
 	CouchPreferences *preferences; 
 }
 
--(IBAction)showLogPanel:(id)sender;
+-(IBAction)showMainWindow:(id)sender;
 -(IBAction)browse:(id)sender;
 -(IBAction)restart:(id)sender;
 -(IBAction)quit:(id)sender;
+
 
 @end
