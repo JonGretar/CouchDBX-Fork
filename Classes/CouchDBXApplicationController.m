@@ -16,6 +16,7 @@
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"IsNetworked"];
   [defaultValues setObject:[NSNumber numberWithBool:NO] forKey:@"LSUIElement"];
+  [defaultValues setObject:[NSNumber numberWithBool:YES] forKey:@"EnableLucene"];
   [defaultValues setObject:@"info" forKey:@"LogLevel"];
 	[defaultValues setObject:@"5984" forKey:@"Port"];
   [defaultValues setObject:@"127.0.0.1" forKey:@"BindAddress"];
