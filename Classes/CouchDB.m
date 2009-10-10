@@ -24,7 +24,7 @@ static CouchDB *couchDBServer = nil;
                   forKey:@"PATH"];
 	[environment setObject:[@"~/Library/Preferences/org.couchdb.CouchDBX.ini" stringByExpandingTildeInPath] 
                   forKey:@"LOCAL_CONFIG_FILE"];
-  [environment setObject:[@"~/Library/Application Support/CouchDBX/config.d" stringByExpandingTildeInPath] 
+  [environment setObject:[@"~/Library/Application Support/CouchDBX/local.d" stringByExpandingTildeInPath] 
                   forKey:@"LOCAL_CONFIG_DIR"];
 	
 	[task setEnvironment:environment];
